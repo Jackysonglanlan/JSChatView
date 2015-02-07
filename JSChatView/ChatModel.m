@@ -54,10 +54,10 @@
     
     [message setWithDict:dataDic];
     [message minuteOffSetStart:previousTime end:dataDic[@"strTime"]];
-    messageFrame.showTime = message.showDateLabel;
+    messageFrame.showTime = message.showSendTime;
     [messageFrame setMessage:message];
     
-    if (message.showDateLabel) {
+    if (message.showSendTime) {
         previousTime = dataDic[@"strTime"];
     }
     [self.dataSource addObject:messageFrame];
@@ -77,10 +77,10 @@ static NSString *previousTime = nil;
         
         [message setWithDict:dataDic];
         [message minuteOffSetStart:previousTime end:dataDic[@"strTime"]];
-        messageFrame.showTime = message.showDateLabel;
+        messageFrame.showTime = message.showSendTime;
         [messageFrame setMessage:message];
         
-        if (message.showDateLabel) {
+        if (message.showSendTime) {
             previousTime = dataDic[@"strTime"];
         }
         [result addObject:messageFrame];

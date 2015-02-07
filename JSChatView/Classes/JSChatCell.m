@@ -76,7 +76,7 @@
 //头像点击
 - (void)btnHeadImageClick:(UIButton *)button{
     if ([self.delegate respondsToSelector:@selector(headImageDidClick:userId:)])  {
-        [self.delegate headImageDidClick:self userId:self.viewModel.message.strId];
+        [self.delegate headImageDidClick:self userId:nil];
     }
 }
 
@@ -87,20 +87,20 @@
     JSChatMessage *message = viewModel.message;
     
     // 1、设置时间
-    self.labelTime.text = message.strTime;
+    self.labelTime.text = message.sendTime;
     self.labelTime.frame = viewModel.timeF;
     
     // 2、设置头像
     headImageBackView.frame = viewModel.iconF;
     self.btnHeadImage.frame = CGRectMake(2, 2, ChatIconWH-4, ChatIconWH-4);
     if (message.from == UUMessageFromMe) {
-        [self.btnHeadImage setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:message.strIcon]];
+        [self.btnHeadImage setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:message.senderHeadURL]];
     }else{
-        [self.btnHeadImage setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:message.strIcon]];
+        [self.btnHeadImage setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:message.senderHeadURL]];
     }
     
     // 3、设置下标
-    self.labelNum.text = message.strName;
+    self.labelNum.text = message.senderName;
     if (viewModel.nameF.origin.x > 160) {
         self.labelNum.frame = CGRectMake(viewModel.nameF.origin.x - 50, viewModel.nameF.origin.y + 3, 100, viewModel.nameF.size.height);
         self.labelNum.textAlignment = NSTextAlignmentRight;

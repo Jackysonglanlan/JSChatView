@@ -8,22 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@class UUInputView;
+#import "JSChatViewUIResponder.h"
+
+@class JSChatInputView;
 
 @protocol UUInputViewDelegate <NSObject>
 
 // text
-- (void)inputView:(UUInputView *)funcView sendMessage:(NSString *)message;
+- (void)inputView:(JSChatInputView *)inputView sendMessage:(NSString *)message;
 
 // image
-- (void)inputView:(UUInputView *)funcView sendPicture:(UIImage *)image;
+- (void)inputView:(JSChatInputView *)inputView sendPicture:(UIImage *)image;
 
 // audio
-- (void)inputView:(UUInputView *)funcView sendVoice:(NSString*)recordedFilePath time:(NSInteger)second;
+- (void)inputView:(JSChatInputView *)inputView sendVoice:(NSString*)recordedFilePath time:(NSInteger)second;
 
 @end
 
-@interface UUInputView : UIView 
+@interface JSChatInputView : UIView 
 
 @property (nonatomic, readonly) UIButton *btnSendMessage;
 @property (nonatomic, readonly) UIButton *btnChangeVoiceState;
@@ -34,8 +36,9 @@
 
 @property (nonatomic, strong) UIViewController *superVC;
 
-@property (nonatomic, weak) id<UUInputViewDelegate>delegate;
+@property (nonatomic, weak) id<UUInputViewDelegate> delegate;
 
+@property (nonatomic, weak) id<JSChatViewUIResponder> uiResponder;
 
 - (id)initWithSuperVC:(UIViewController *)superVC;
 

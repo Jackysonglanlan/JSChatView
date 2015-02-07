@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 uyiuyao. All rights reserved.
 //
 
-#import "UUInputView.h"
+#import "JSChatInputView.h"
 
 #import "UUProgressHUD.h"
 #import "ACMacros.h"
 
-@interface UUInputView ()<
+@interface JSChatInputView ()<
 UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,
 UITextViewDelegate
 >
@@ -24,7 +24,7 @@ UITextViewDelegate
 }
 @end
 
-@implementation UUInputView
+@implementation JSChatInputView
 
 - (id)initWithSuperVC:(UIViewController *)superVC{
     self.superVC = superVC;

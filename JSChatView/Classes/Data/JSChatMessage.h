@@ -23,10 +23,14 @@ typedef enum {
 
 @interface JSChatMessage : NSObject
 
-@property (nonatomic, copy) NSString *strIcon;
-@property (nonatomic, copy) NSString *strId;
-@property (nonatomic, copy) NSString *strTime;
-@property (nonatomic, copy) NSString *strName;
+@property(nonatomic,retain) id msgId;
+
+@property (nonatomic, copy) NSString *senderHeadURL;
+
+@property (nonatomic, copy) NSString *sendTime;
+@property (nonatomic, assign) BOOL showSendTime;
+
+@property (nonatomic, copy) NSString *senderName;
 
 @property (nonatomic, copy) NSString *strContent;
 @property (nonatomic, copy) UIImage  *picture;
@@ -36,7 +40,7 @@ typedef enum {
 @property (nonatomic, assign) UUMessageType type;
 @property (nonatomic, assign) UUMessageFrom from;
 
-@property (nonatomic, assign) BOOL showDateLabel;
+@property(nonatomic,retain) NSDictionary *info;
 
 - (void)setWithDict:(NSDictionary *)dict;
 

@@ -8,7 +8,7 @@
 
 #import "JSChatViewController.h"
 
-#import "UUInputView.h"
+#import "JSChatInputView.h"
 #import "JSChatCell.h"
 #import "ChatModel.h"
 #import "JSChatCellViewModel.h"
@@ -53,7 +53,7 @@
 }
 
 - (void)buildChatTableView {
-    UUInputView *inputView = [[UUInputView alloc] initWithSuperVC:self];
+    JSChatInputView *inputView = [[JSChatInputView alloc] initWithSuperVC:self];
     inputView.delegate = self;
     inputView.tag = kTag_InputView;
     [self.view addSubview:inputView];
@@ -142,7 +142,7 @@
 
 
 #pragma mark - UUInputViewDelegate
-- (void)inputView:(UUInputView *)funcView sendMessage:(NSString *)message
+- (void)inputView:(JSChatInputView *)funcView sendMessage:(NSString *)message
 {
     NSDictionary *dic = @{@"strContent": message, @"type":@(UUMessageTypeText)};
     funcView.textInputView.text = @"";
@@ -150,13 +150,13 @@
     [self dealTheFunctionData:dic];
 }
 
-- (void)inputView:(UUInputView *)funcView sendPicture:(UIImage *)image
+- (void)inputView:(JSChatInputView *)funcView sendPicture:(UIImage *)image
 {
     NSDictionary *dic = @{@"picture": image, @"type":@(UUMessageTypePicture)};
     [self dealTheFunctionData:dic];
 }
 
-- (void)inputView:(UUInputView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
+- (void)inputView:(JSChatInputView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
 {
     NSDictionary *dic = @{@"voice": voice, @"strVoiceTime":[NSString stringWithFormat:@"%d",(int)second],
                           @"type":@(UUMessageTypeVoice)};

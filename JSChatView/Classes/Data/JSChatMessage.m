@@ -13,10 +13,9 @@
 
 - (void)setWithDict:(NSDictionary *)dict{
     
-    self.strIcon = dict[@"strIcon"];
-    self.strName = dict[@"strName"];
-    self.strId = dict[@"strId"];
-    self.strTime = [self changeTheDateString:dict[@"strTime"]];
+    self.senderHeadURL = dict[@"strIcon"];
+    self.senderName = dict[@"strName"];
+    self.sendTime = [self changeTheDateString:dict[@"strTime"]];
     
     if ([dict[@"from"] intValue]==1) {
         self.from = UUMessageFromMe;
@@ -89,7 +88,7 @@
 - (void)minuteOffSetStart:(NSString *)start end:(NSString *)end
 {
     if (!start) {
-        self.showDateLabel = YES;
+        self.showSendTime = YES;
         return;
     }
     
@@ -104,9 +103,9 @@
     
     //相距5分钟显示时间Label
     if (fabs (timeInterval) > 5*60) {
-        self.showDateLabel = YES;
+        self.showSendTime = YES;
     }else{
-        self.showDateLabel = NO;
+        self.showSendTime = NO;
     }
     
 }

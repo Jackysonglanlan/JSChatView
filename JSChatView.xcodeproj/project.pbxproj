@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C1257FD1A86625D00EBA5B5 /* ImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1257FC1A86625D00EBA5B5 /* ImagePicker.m */; };
 		4C4BD2621A86487400FB89CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4BD2611A86487400FB89CB /* Foundation.framework */; };
 		4C4BD2641A86487400FB89CB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4BD2631A86487400FB89CB /* CoreGraphics.framework */; };
 		4C4BD2661A86487400FB89CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C4BD2651A86487400FB89CB /* UIKit.framework */; };
@@ -66,7 +67,7 @@
 		4C4BD3191A864C8F00FB89CB /* JSChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2E51A864C8F00FB89CB /* JSChatViewController.m */; };
 		4C4BD31A1A864C8F00FB89CB /* JSChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2E71A864C8F00FB89CB /* JSChatCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C4BD31B1A864C8F00FB89CB /* JSChatBubbleBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2EA1A864C8F00FB89CB /* JSChatBubbleBgView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4C4BD31C1A864C8F00FB89CB /* UUInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2EC1A864C8F00FB89CB /* UUInputView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4C4BD31C1A864C8F00FB89CB /* JSChatInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2EC1A864C8F00FB89CB /* JSChatInputView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C4BD31D1A864C8F00FB89CB /* UUProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2EE1A864C8F00FB89CB /* UUProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C4BD3221A864DB300FB89CB /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD3211A864DB300FB89CB /* ChatModel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 /* End PBXBuildFile section */
@@ -82,6 +83,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C1257FB1A86625D00EBA5B5 /* ImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePicker.h; sourceTree = "<group>"; };
+		4C1257FC1A86625D00EBA5B5 /* ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePicker.m; sourceTree = "<group>"; };
+		4C1257FF1A86665700EBA5B5 /* JSChatViewUIResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSChatViewUIResponder.h; sourceTree = "<group>"; };
 		4C4BD25E1A86487400FB89CB /* JSChatView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSChatView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C4BD2611A86487400FB89CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4C4BD2631A86487400FB89CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,8 +182,8 @@
 		4C4BD2E71A864C8F00FB89CB /* JSChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSChatCell.m; sourceTree = "<group>"; };
 		4C4BD2E91A864C8F00FB89CB /* JSChatBubbleBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSChatBubbleBgView.h; sourceTree = "<group>"; };
 		4C4BD2EA1A864C8F00FB89CB /* JSChatBubbleBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSChatBubbleBgView.m; sourceTree = "<group>"; };
-		4C4BD2EB1A864C8F00FB89CB /* UUInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUInputView.h; sourceTree = "<group>"; };
-		4C4BD2EC1A864C8F00FB89CB /* UUInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUInputView.m; sourceTree = "<group>"; };
+		4C4BD2EB1A864C8F00FB89CB /* JSChatInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSChatInputView.h; sourceTree = "<group>"; };
+		4C4BD2EC1A864C8F00FB89CB /* JSChatInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSChatInputView.m; sourceTree = "<group>"; };
 		4C4BD2ED1A864C8F00FB89CB /* UUProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUProgressHUD.h; sourceTree = "<group>"; };
 		4C4BD2EE1A864C8F00FB89CB /* UUProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUProgressHUD.m; sourceTree = "<group>"; };
 		4C4BD31F1A864D5B00FB89CB /* JSShortHand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSShortHand.h; sourceTree = "<group>"; };
@@ -211,6 +215,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C1257FA1A86625D00EBA5B5 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				4C1257FB1A86625D00EBA5B5 /* ImagePicker.h */,
+				4C1257FC1A86625D00EBA5B5 /* ImagePicker.m */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
+		4C1257FE1A8665DD00EBA5B5 /* PublicInterfaces */ = {
+			isa = PBXGroup;
+			children = (
+				4C1257FF1A86665700EBA5B5 /* JSChatViewUIResponder.h */,
+			);
+			path = PublicInterfaces;
+			sourceTree = "<group>";
+		};
 		4C4BD2551A86487400FB89CB = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +311,7 @@
 		4C4BD2961A864C8E00FB89CB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4C1257FE1A8665DD00EBA5B5 /* PublicInterfaces */,
 				4C4BD2A91A864C8F00FB89CB /* OtherResources */,
 				4C4BD31E1A864D4400FB89CB /* Utils */,
 				4C4BD2971A864C8E00FB89CB /* Data */,
@@ -422,10 +444,11 @@
 		4C4BD2E81A864C8F00FB89CB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4C1257FA1A86625D00EBA5B5 /* ImagePicker */,
 				4C4BD2E91A864C8F00FB89CB /* JSChatBubbleBgView.h */,
 				4C4BD2EA1A864C8F00FB89CB /* JSChatBubbleBgView.m */,
-				4C4BD2EB1A864C8F00FB89CB /* UUInputView.h */,
-				4C4BD2EC1A864C8F00FB89CB /* UUInputView.m */,
+				4C4BD2EB1A864C8F00FB89CB /* JSChatInputView.h */,
+				4C4BD2EC1A864C8F00FB89CB /* JSChatInputView.m */,
 				4C4BD2ED1A864C8F00FB89CB /* UUProgressHUD.h */,
 				4C4BD2EE1A864C8F00FB89CB /* UUProgressHUD.m */,
 			);
@@ -571,6 +594,7 @@
 				4C4BD2F91A864C8F00FB89CB /* AFHTTPSessionManager.m in Sources */,
 				4C4BD2EF1A864C8F00FB89CB /* JSChatMessage.m in Sources */,
 				4C4BD2FA1A864C8F00FB89CB /* AFNetworkReachabilityManager.m in Sources */,
+				4C1257FD1A86625D00EBA5B5 /* ImagePicker.m in Sources */,
 				4C4BD2F51A864C8F00FB89CB /* JSMsgContentHandlerPool.m in Sources */,
 				4C4BD2FE1A864C8F00FB89CB /* AFURLResponseSerialization.m in Sources */,
 				4C4BD2FD1A864C8F00FB89CB /* AFURLRequestSerialization.m in Sources */,
@@ -580,7 +604,7 @@
 				4C4BD2F31A864C8F00FB89CB /* JSImageMessageHandler.m in Sources */,
 				4C4BD3121A864C8F00FB89CB /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4C4BD3171A864C8F00FB89CB /* UIRefreshControl+AFNetworking.m in Sources */,
-				4C4BD31C1A864C8F00FB89CB /* UUInputView.m in Sources */,
+				4C4BD31C1A864C8F00FB89CB /* JSChatInputView.m in Sources */,
 				4C4BD3161A864C8F00FB89CB /* UIProgressView+AFNetworking.m in Sources */,
 				4C4BD3191A864C8F00FB89CB /* JSChatViewController.m in Sources */,
 				4C4BD2FB1A864C8F00FB89CB /* AFSecurityPolicy.m in Sources */,
