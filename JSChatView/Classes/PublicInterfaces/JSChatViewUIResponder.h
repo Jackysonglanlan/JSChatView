@@ -8,18 +8,27 @@
 
 @class JSChatInputView;
 @class JSChatCell;
+@class JSChatCellViewModel;
 
 @protocol JSChatViewUIResponder <NSObject>
 
 @optional
 
-- (void)jsChatCell:(JSChatCell *)cell headImageDidTapWithUserId:(id)userId;
+- (void)headerViewInCell:(JSChatCell *)cell didTapWithViewModel:(JSChatCellViewModel*)viewModel;
 
 - (void)inputView:(JSChatInputView *)inputView sendTextBtnDidTapWithText:(NSString *)message;
 
 - (void)chooseImageBtnDidTapWithInputView:(JSChatInputView *)inputView;
 
-- (void)recordAudioBtnDidTapWithInputView:(JSChatInputView *)inputView;
+- (void)recordAudioDidBeginWithButton:(UIButton *)button;
+
+- (void)recordAudioDidEndWithButton:(UIButton *)button;
+
+- (void)recordAudioDidCancelWithButton:(UIButton *)button;
+
+- (void)recordAudioBtnDragExit:(UIButton*)button;
+
+- (void)recordAudioBtnDragEnter:(UIButton*)button;
 
 @end
 

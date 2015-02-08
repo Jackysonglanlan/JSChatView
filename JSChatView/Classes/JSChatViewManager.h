@@ -10,7 +10,13 @@
 
 #import "JSMessageContentHandler.h"
 
+#import "JSChatViewUIRender.h"
+#import "JSChatViewUIResponder.h"
+
 @interface JSChatViewManager : NSObject
+
+@property(nonatomic,assign) id<JSChatViewUIRender> uiRender;
+@property(nonatomic,assign) id<JSChatViewUIResponder> uiResponder;
 
 @property(nonatomic,readonly) UIView *chatView;
 

@@ -12,16 +12,18 @@
 
 @class JSChatInputView;
 
-@protocol UUInputViewDelegate <NSObject>
+@protocol JSChatInputViewDelegate <NSObject>
+
+@optional
 
 // text
-- (void)inputView:(JSChatInputView *)inputView sendMessage:(NSString *)message;
+- (void)inputView:(JSChatInputView *)inputView afterSendTextBtnTapWithText:(NSString *)text;
 
 // image
-- (void)inputView:(JSChatInputView *)inputView sendPicture:(UIImage *)image;
+//- (void)inputView:(JSChatInputView *)inputView sendPicture:(UIImage *)image;
 
 // audio
-- (void)inputView:(JSChatInputView *)inputView sendVoice:(NSString*)recordedFilePath time:(NSInteger)second;
+//- (void)inputView:(JSChatInputView *)inputView sendVoice:(NSString*)recordedFilePath time:(NSInteger)second;
 
 @end
 
@@ -36,11 +38,9 @@
 
 @property (nonatomic, strong) UIViewController *superVC;
 
-@property (nonatomic, weak) id<UUInputViewDelegate> delegate;
+@property (nonatomic, weak) id<JSChatInputViewDelegate> delegate;
 
 @property (nonatomic, weak) id<JSChatViewUIResponder> uiResponder;
-
-- (id)initWithSuperVC:(UIViewController *)superVC;
 
 - (void)changeSendBtnWithPhoto:(BOOL)isPhoto;
 

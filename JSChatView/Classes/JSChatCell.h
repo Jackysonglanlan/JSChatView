@@ -16,15 +16,21 @@
 
 @protocol JSChatCellDelegate <NSObject>
 
+-(void)renderHeadImageView:(UIImageView*)headView headBgView:(UIView*)bgView
+                 viewModel:(JSChatCellViewModel*)vm;
+
 @optional
-- (void)headImageDidClick:(JSChatCell *)cell userId:(NSString *)userId;
+
+- (void)headImageDidTapWithImageBgView:(UIView*)bgView headView:(UIImageView*)headView
+                                  cell:(JSChatCell *)cell
+                             viewModel:(JSChatCellViewModel*)vm;
+
 @end
 
 @interface JSChatCell : UITableViewCell
 
 @property (nonatomic, strong)UILabel *labelTime;
 @property (nonatomic, strong)UILabel *labelNum;
-@property (nonatomic, strong)UIButton *btnHeadImage;
 @property (nonatomic, strong)UIImageView *lineView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

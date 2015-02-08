@@ -86,6 +86,7 @@
 		4C1257FB1A86625D00EBA5B5 /* ImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePicker.h; sourceTree = "<group>"; };
 		4C1257FC1A86625D00EBA5B5 /* ImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePicker.m; sourceTree = "<group>"; };
 		4C1257FF1A86665700EBA5B5 /* JSChatViewUIResponder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSChatViewUIResponder.h; sourceTree = "<group>"; };
+		4C1258001A871DD800EBA5B5 /* JSChatViewUIRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSChatViewUIRender.h; sourceTree = "<group>"; };
 		4C4BD25E1A86487400FB89CB /* JSChatView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSChatView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C4BD2611A86487400FB89CB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4C4BD2631A86487400FB89CB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -228,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				4C1257FF1A86665700EBA5B5 /* JSChatViewUIResponder.h */,
+				4C1258001A871DD800EBA5B5 /* JSChatViewUIRender.h */,
 			);
 			path = PublicInterfaces;
 			sourceTree = "<group>";

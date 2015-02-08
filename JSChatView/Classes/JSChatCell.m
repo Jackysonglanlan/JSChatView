@@ -18,6 +18,7 @@
     NSString *voiceURL;
     
     UIView *headImageBackView;
+    UIImageView *headImageView;
     
     __weak JSMsgContentHandlerPool *contentHandlerPool;
     
@@ -51,11 +52,13 @@
         headImageBackView.layer.masksToBounds = YES;
         headImageBackView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
         [self.contentView addSubview:headImageBackView];
-        self.btnHeadImage = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnHeadImage.layer.cornerRadius = 20;
-        self.btnHeadImage.layer.masksToBounds = YES;
-        [self.btnHeadImage addTarget:self action:@selector(btnHeadImageClick:)  forControlEvents:UIControlEventTouchUpInside];
-        [headImageBackView addSubview:self.btnHeadImage];
+        
+        headImageView = [UIImageView new];
+        headImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *headGR = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(headImageDidTap)];
+        [headImageView addGestureRecognizer:headGR];
+        [headImageBackView addSubview:headImageView];
         
         // 3、创建头像下标
         self.labelNum = [[UILabel alloc] init];
@@ -74,9 +77,10 @@
 }
 
 //头像点击
-- (void)btnHeadImageClick:(UIButton *)button{
-    if ([self.delegate respondsToSelector:@selector(headImageDidClick:userId:)])  {
-        [self.delegate headImageDidClick:self userId:nil];
+- (void)headImageDidTap{
+    if ([self.delegate respondsToSelector:@selector(headImageDidTapWithImageBgView:headView:cell:viewModel:)]){
+        [self.delegate headImageDidTapWithImageBgView:headImageBackView headView:headImageView
+                                                 cell:self viewModel:self.viewModel];
     }
 }
 
@@ -92,11 +96,10 @@
     
     // 2、设置头像
     headImageBackView.frame = viewModel.iconF;
-    self.btnHeadImage.frame = CGRectMake(2, 2, ChatIconWH-4, ChatIconWH-4);
-    if (message.from == UUMessageFromMe) {
-        [self.btnHeadImage setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:message.senderHeadURL]];
-    }else{
-        [self.btnHeadImage setBackgroundImageForState:UIControlStateNormal withURL:[NSURL URLWithString:message.senderHeadURL]];
+    headImageView.frame = CGRectMake(2, 2, ChatIconWH-4, ChatIconWH-4);
+    
+    if ([self.delegate respondsToSelector:@selector(renderHeadImageView:headBgView:viewModel:)]){
+        [self.delegate renderHeadImageView:headImageView headBgView:headImageBackView viewModel:viewModel];
     }
     
     // 3、设置下标
@@ -116,11 +119,7 @@
     
     contentHandler.message = viewModel.message;
     
-    if (message.from == UUMessageFromMe) {
-        [contentHandler beforeRenderContentViewFromMe:self.bubbleBgView cellContentView:self.contentView];
-    }else{
-        [contentHandler beforeRenderContentViewFromOther:self.bubbleBgView cellContentView:self.contentView];
-    }
+    [contentHandler beforeRenderContentViewFromMe:self.bubbleBgView cellContentView:self.contentView];
 
     [contentHandler renderContentInBubbleBgView:self.bubbleBgView cellContentView:self.contentView];
 

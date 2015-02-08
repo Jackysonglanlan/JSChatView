@@ -14,13 +14,16 @@
 #import "JSChatCellViewModel.h"
 #import "JSChatMessage.h"
 
+#import "ACMacros.h"
+
 #import "JSShortHand.h"
 
 #define kTag_InputView 12345
 #define kTag_ChatTableView 12346
 
 
-@interface JSChatViewController ()<UUInputViewDelegate,JSChatCellDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface JSChatViewController ()
+<JSChatCellDelegate,JSChatInputViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (retain, nonatomic) ChatModel *chatModel;
 
@@ -53,8 +56,10 @@
 }
 
 - (void)buildChatTableView {
-    JSChatInputView *inputView = [[JSChatInputView alloc] initWithSuperVC:self];
+    CGRect inputViewFrm = CGRectMake(0, Main_Screen_Height-40, Main_Screen_Width, 40);
+    JSChatInputView *inputView = [[JSChatInputView alloc] initWithFrame:inputViewFrm];
     inputView.delegate = self;
+    inputView.uiResponder = manager.uiResponder;
     inputView.tag = kTag_InputView;
     [self.view addSubview:inputView];
     
@@ -141,27 +146,25 @@
 }
 
 
-#pragma mark - UUInputViewDelegate
-- (void)inputView:(JSChatInputView *)funcView sendMessage:(NSString *)message
-{
-    NSDictionary *dic = @{@"strContent": message, @"type":@(UUMessageTypeText)};
-    funcView.textInputView.text = @"";
-    [funcView changeSendBtnWithPhoto:YES];
+#pragma mark - JSChatInputViewDelegate
+
+- (void)inputView:(JSChatInputView *)inputView afterSendTextBtnTapWithText:(NSString *)text{
+    NSDictionary *dic = @{@"strContent": text, @"type":@(UUMessageTypeText)};
+    inputView.textInputView.text = @"";
+    [inputView changeSendBtnWithPhoto:YES];
     [self dealTheFunctionData:dic];
 }
 
-- (void)inputView:(JSChatInputView *)funcView sendPicture:(UIImage *)image
-{
-    NSDictionary *dic = @{@"picture": image, @"type":@(UUMessageTypePicture)};
-    [self dealTheFunctionData:dic];
-}
-
-- (void)inputView:(JSChatInputView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second
-{
-    NSDictionary *dic = @{@"voice": voice, @"strVoiceTime":[NSString stringWithFormat:@"%d",(int)second],
-                          @"type":@(UUMessageTypeVoice)};
-    [self dealTheFunctionData:dic];
-}
+//- (void)inputView:(JSChatInputView *)funcView sendPicture:(UIImage *)image{
+//    NSDictionary *dic = @{@"picture": image, @"type":@(UUMessageTypePicture)};
+//    [self dealTheFunctionData:dic];
+//}
+//
+//- (void)inputView:(JSChatInputView *)funcView sendVoice:(NSData *)voice time:(NSInteger)second{
+//    NSDictionary *dic = @{@"voice": voice, @"strVoiceTime":[NSString stringWithFormat:@"%d",(int)second],
+//                          @"type":@(UUMessageTypeVoice)};
+//    [self dealTheFunctionData:dic];
+//}
 
 - (void)dealTheFunctionData:(NSDictionary *)dic
 {
@@ -215,9 +218,18 @@
 }
 
 #pragma mark - cellDelegate
-- (void)headImageDidClick:(JSChatCell *)cell userId:(NSString *)userId{
-    NSLog(@"userId:%@",userId);
+
+-(void)renderHeadImageView:(UIImageView*)headView headBgView:(UIView*)bgView
+                 viewModel:(JSChatCellViewModel*)vm{
+    [manager.uiRender renderSenderHead:headView headBgView:bgView viewModel:vm];
+}
+
+- (void)headImageDidTapWithImageBgView:(UIView*)bgView headView:(UIImageView*)headView
+                                  cell:(JSChatCell *)cell
+                             viewModel:(JSChatCellViewModel*)vm{
+    [manager.uiResponder headerViewInCell:cell didTapWithViewModel:vm];
     
+    NSLog(@"sender head url:%@",vm.message.senderHeadURL);
     
     // TEST only
     int pageNum = 3;

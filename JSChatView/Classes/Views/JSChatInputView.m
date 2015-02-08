@@ -11,14 +11,8 @@
 #import "UUProgressHUD.h"
 #import "ACMacros.h"
 
-@interface JSChatInputView ()<
-UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,
-UITextViewDelegate
->
-{
+@interface JSChatInputView ()<UIActionSheetDelegate,UITextViewDelegate>{
     BOOL isbeginVoiceRecord;
-    NSInteger playTime;
-    NSTimer *playTimer;
     
     UILabel *placeHold;
 }
@@ -26,18 +20,13 @@ UITextViewDelegate
 
 @implementation JSChatInputView
 
-- (id)initWithSuperVC:(UIViewController *)superVC{
-    self.superVC = superVC;
-    CGFloat VCWidth = Main_Screen_Width;
-    CGFloat VCHeight = Main_Screen_Height;
-    CGRect frame = CGRectMake(0, VCHeight-40, VCWidth, 40);
-    
+- (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         //发送消息
         _btnSendMessage = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnSendMessage.frame = CGRectMake(VCWidth-40, 5, 30, 30);
+        self.btnSendMessage.frame = CGRectMake(CGRectGetWidth(frame)-40, 5, 30, 30);
         self.isAbleToSendTextMessage = NO;
         [self.btnSendMessage setTitle:@"" forState:UIControlStateNormal];
         [self.btnSendMessage setBackgroundImage:[UIImage imageNamed:@"Chat_take_picture"] forState:UIControlStateNormal];
@@ -63,11 +52,17 @@ UITextViewDelegate
         [self.btnVoiceRecord setTitleColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
         [self.btnVoiceRecord setTitle:@"Hold to Talk" forState:UIControlStateNormal];
         [self.btnVoiceRecord setTitle:@"Release to Send" forState:UIControlStateHighlighted];
-        [self.btnVoiceRecord addTarget:self action:@selector(beginRecordVoice:) forControlEvents:UIControlEventTouchDown];
-        [self.btnVoiceRecord addTarget:self action:@selector(endRecordVoice:) forControlEvents:UIControlEventTouchUpInside];
-        [self.btnVoiceRecord addTarget:self action:@selector(cancelRecordVoice:) forControlEvents:UIControlEventTouchUpOutside | UIControlEventTouchCancel];
-        [self.btnVoiceRecord addTarget:self action:@selector(RemindDragExit:) forControlEvents:UIControlEventTouchDragExit];
-        [self.btnVoiceRecord addTarget:self action:@selector(RemindDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
+        
+        [self.btnVoiceRecord addTarget:self action:@selector(beginRecordVoice:)
+                      forControlEvents:UIControlEventTouchDown];
+        [self.btnVoiceRecord addTarget:self action:@selector(endRecordVoice:)
+                      forControlEvents:UIControlEventTouchUpInside];
+        [self.btnVoiceRecord addTarget:self action:@selector(cancelRecordVoice:)
+                      forControlEvents:UIControlEventTouchUpOutside | UIControlEventTouchCancel];
+        [self.btnVoiceRecord addTarget:self action:@selector(remindDragExit:)
+                      forControlEvents:UIControlEventTouchDragExit];
+        [self.btnVoiceRecord addTarget:self action:@selector(remindDragEnter:)
+                      forControlEvents:UIControlEventTouchDragEnter];
         [self addSubview:self.btnVoiceRecord];
         
         //输入框
@@ -99,79 +94,39 @@ UITextViewDelegate
 }
 
 #pragma mark - 录音touch事件
-- (void)beginRecordVoice:(UIButton *)button
-{
-//    [MP3 startRecord];
-    playTime = 0;
-    playTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countVoiceTime) userInfo:nil repeats:YES];
-    [UUProgressHUD show];
+- (void)beginRecordVoice:(UIButton *)button{
+    if ([self.uiResponder respondsToSelector:@selector(recordAudioDidBeginWithButton:)]) {
+        [self.uiResponder recordAudioDidBeginWithButton:button];
+    }
+
 }
 
-- (void)endRecordVoice:(UIButton *)button
-{
-    if (playTimer) {
-//        [MP3 stopRecord];
-        [playTimer invalidate];
-        playTimer = nil;
+- (void)endRecordVoice:(UIButton *)button{
+    if ([self.uiResponder respondsToSelector:@selector(recordAudioDidEndWithButton:)]) {
+        [self.uiResponder recordAudioDidEndWithButton:button];
     }
 }
 
-- (void)cancelRecordVoice:(UIButton *)button
-{
-    if (playTimer) {
-//        [MP3 cancelRecord];
-        [playTimer invalidate];
-        playTimer = nil;
-    }
-    [UUProgressHUD dismissWithError:@"Cancel"];
-}
-
-- (void)RemindDragExit:(UIButton *)button
-{
-    [UUProgressHUD changeSubTitle:@"Release to cancel"];
-}
-
-- (void)RemindDragEnter:(UIButton *)button
-{
-    [UUProgressHUD changeSubTitle:@"Slide up to cancel"];
-}
-
-
-- (void)countVoiceTime
-{
-    playTime ++;
-    if (playTime>=60) {
-        [self endRecordVoice:nil];
+- (void)cancelRecordVoice:(UIButton *)button{
+    if ([self.uiResponder respondsToSelector:@selector(recordAudioDidCancelWithButton:)]) {
+        [self.uiResponder recordAudioDidCancelWithButton:button];
     }
 }
 
-#pragma mark - AudioRecorderDelegate
-
-//回调录音资料
-- (void)endConvertWithAudioFile:(NSString*)recordedFilePath
-{
-    [self.delegate inputView:self sendVoice:recordedFilePath time:playTime+1];
-    [UUProgressHUD dismissWithSuccess:@"Success"];
-   
-    //缓冲消失时间 (最好有block回调消失完成)
-    self.btnVoiceRecord.enabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.btnVoiceRecord.enabled = YES;
-    });
+- (void)remindDragExit:(UIButton *)button{
+    if ([self.uiResponder respondsToSelector:@selector(recordAudioBtnDragExit:)]) {
+        [self.uiResponder recordAudioBtnDragExit:button];
+    }
 }
 
-- (void)failRecord
-{
-    [UUProgressHUD dismissWithSuccess:@"Too short"];
-    
-    //缓冲消失时间 (最好有block回调消失完成)
-    self.btnVoiceRecord.enabled = NO;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.btnVoiceRecord.enabled = YES;
-    });
+- (void)remindDragEnter:(UIButton *)button{
+    if ([self.uiResponder respondsToSelector:@selector(recordAudioBtnDragEnter:)]) {
+        [self.uiResponder recordAudioBtnDragEnter:button];
+    }
 }
 
 #pragma mark - Keyboard methods
+
 //跟随键盘高度变化
 -(void)keyboardDidShowOrHide:(NSNotification *)notification
 {
@@ -215,15 +170,22 @@ UITextViewDelegate
 {
     if (self.isAbleToSendTextMessage) {
         NSString *resultStr = [self.textInputView.text stringByReplacingOccurrencesOfString:@"   " withString:@""];
-        [self.delegate inputView:self sendMessage:resultStr];
+        if ([self.uiResponder respondsToSelector:@selector(inputView:sendTextBtnDidTapWithText:)]) {
+            [self.uiResponder inputView:self sendTextBtnDidTapWithText:resultStr];
+        }
+        if ([self.delegate respondsToSelector:@selector(inputView:afterSendTextBtnTapWithText:)]) {
+            [self.delegate inputView:self afterSendTextBtnTapWithText:resultStr];
+        }
     }
     else{
         [self.textInputView resignFirstResponder];
-        UIActionSheet *actionSheet= [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera",@"Images",nil];
-        [actionSheet showInView:self.window];
+        
+        if ([self.uiResponder respondsToSelector:@selector(chooseImageBtnDidTapWithInputView:)]) {
+            [self.uiResponder chooseImageBtnDidTapWithInputView:self];
+        }
+
     }
 }
-
 
 #pragma mark - TextViewDelegate
 
@@ -256,54 +218,6 @@ UITextViewDelegate
         placeHold.hidden = YES;
     else
         placeHold.hidden = NO;
-}
-
-
-#pragma mark - Add Picture
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 0) {
-        [self addCarema];
-    }else if (buttonIndex == 1){
-        [self openPicLibrary];
-    }
-}
-
--(void)addCarema{
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self.superVC presentViewController:picker animated:YES completion:^{}];
-    }else{
-        //如果没有提示用户
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tip" message:@"Your device don't have camera" delegate:nil cancelButtonTitle:@"Sure" otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
--(void)openPicLibrary{
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.allowsEditing = YES;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self.superVC presentViewController:picker animated:YES completion:^{
-        }];
-    }
-}
-
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *editImage = [info objectForKey:UIImagePickerControllerEditedImage];
-    [self.superVC dismissViewControllerAnimated:YES completion:^{
-        [self.delegate inputView:self sendPicture:editImage];
-    }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [self.superVC dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)dealloc{
