@@ -1,2 +1,2 @@
 # JSChatView
-Based on UUChatView, add more flexibility.
+Based on UUChatTableView, add more flexibility.
