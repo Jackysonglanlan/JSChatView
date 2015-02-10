@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface NSDate (UU_Utils)
+@interface NSDate (JSChatView_Utils)
 
 + (NSDate *)dateWithYear:(NSInteger)year
                    month:(NSInteger)month
