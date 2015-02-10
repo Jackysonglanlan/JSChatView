@@ -8,9 +8,18 @@
 
 #import "JSChatCellViewModel.h"
 
+#import "JSChatCell.h"
+
 @protocol JSChatViewUIRender <NSObject>
 
+-(UIImageView*)createHeadImageViewInCell:(JSChatCell*)cell headBgView:(UIView*)bgView;
 -(void)renderSenderHead:(UIImageView *)headerView headBgView:(UIView*)bgView
-              viewModel:(JSChatCellViewModel*)viewModel;
+                 inCell:(JSChatCell*)cell;
+
+-(UIView*)createSenderNameViewInCell:(JSChatCell*)cell;
+-(void)renderSenderNameView:(UIView*)nameView inCell:(JSChatCell*)cell;
+
+-(UIView*)createSendTimeViewInCell:(JSChatCell*)cell;
+-(void)renderSendTimeView:(UIView*)nameView inCell:(JSChatCell*)cell;
 
 @end

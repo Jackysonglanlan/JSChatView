@@ -16,8 +16,15 @@
 
 @protocol JSChatCellDelegate <NSObject>
 
+-(UIImageView*)createHeadImageViewInCell:(JSChatCell*)cell headBgView:(UIView*)bgView;
 -(void)renderHeadImageView:(UIImageView*)headView headBgView:(UIView*)bgView
-                 viewModel:(JSChatCellViewModel*)vm;
+                    inCell:(JSChatCell*)cell;
+
+-(UIView*)createSenderNameViewInCell:(JSChatCell*)cell;
+-(void)renderSenderNameView:(UIView*)nameView inCell:(JSChatCell*)cell;
+
+-(UIView*)createSendTimeViewInCell:(JSChatCell*)cell;
+-(void)renderSendTimeView:(UIView*)timeView inCell:(JSChatCell*)cell;
 
 @optional
 
@@ -29,17 +36,15 @@
 
 @interface JSChatCell : UITableViewCell
 
-@property (nonatomic, strong)UILabel *labelTime;
-@property (nonatomic, strong)UILabel *labelNum;
-@property (nonatomic, strong)UIImageView *lineView;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-            handler:(JSMessageContentHandler*)handler;
+            handler:(JSMessageContentHandler*)handler
+           delegate:(id<JSChatCellDelegate>)delegate;
+
+@property (nonatomic, readonly) UIView *msgSendTimeView;
+@property (nonatomic, readonly) UIView *senderNameView;
 
 // set its message frame then render the content on the bubble bg view
 @property (nonatomic, strong) JSChatCellViewModel *viewModel;
-
-@property (nonatomic, weak)id<JSChatCellDelegate>delegate;
 
 @end
 

@@ -192,8 +192,9 @@
     JSChatCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
         cell = [[[JSChatCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                     reuseIdentifier:cellId handler:handler] autorelease];
-        cell.delegate = self;
+                                  reuseIdentifier:cellId
+                                          handler:handler
+                                         delegate:self] autorelease];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -219,9 +220,29 @@
 
 #pragma mark - cellDelegate
 
+-(UIImageView*)createHeadImageViewInCell:(JSChatCell*)cell headBgView:(UIView*)bgView{
+    return [manager.uiRender createHeadImageViewInCell:cell headBgView:bgView];
+}
+
 -(void)renderHeadImageView:(UIImageView*)headView headBgView:(UIView*)bgView
-                 viewModel:(JSChatCellViewModel*)vm{
-    [manager.uiRender renderSenderHead:headView headBgView:bgView viewModel:vm];
+                    inCell:(JSChatCell*)cell{
+    [manager.uiRender renderSenderHead:headView headBgView:bgView inCell:cell];
+}
+
+-(UIView*)createSenderNameViewInCell:(JSChatCell*)cell{
+    return [manager.uiRender createSenderNameViewInCell:cell];
+}
+
+-(void)renderSenderNameView:(UIView*)nameView inCell:(JSChatCell*)cell{
+    [manager.uiRender renderSenderNameView:nameView inCell:cell];
+}
+
+-(UIView*)createSendTimeViewInCell:(JSChatCell*)cell{
+    return [manager.uiRender createSendTimeViewInCell:cell];
+}
+
+-(void)renderSendTimeView:(UIView*)timeView inCell:(JSChatCell*)cell{
+    [manager.uiRender renderSendTimeView:timeView inCell:cell];
 }
 
 - (void)headImageDidTapWithImageBgView:(UIView*)bgView headView:(UIImageView*)headView
