@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JSChatBubbleBgView.h"
-#import "JSChatCellViewModel.h"
 
+#import "JSChatCellViewModel.h"
 #import "JSMsgContentHandlerPool.h"
 
 @class JSChatCell;

@@ -13,7 +13,7 @@
 @interface JSChatInputView ()<UIActionSheetDelegate,UITextViewDelegate>{
     BOOL isbeginVoiceRecord;
     
-    UILabel *placeHold;
+    UILabel *inputPlaceHolder;
 }
 @end
 
@@ -74,10 +74,10 @@
         [self addSubview:self.textInputView];
         
         //输入框的提示语
-        placeHold = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 200, 30)];
-        placeHold.text = @"Input the contents here";
-        placeHold.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8];
-        [self.textInputView addSubview:placeHold];
+        inputPlaceHolder = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 200, 30)];
+        inputPlaceHolder.text = @"Input the contents here";
+        inputPlaceHolder.textColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8];
+        [self.textInputView addSubview:inputPlaceHolder];
         
         //分割线
         
@@ -188,18 +188,14 @@
 
 #pragma mark - TextViewDelegate
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if (self.textInputView.text.length>0)
-        placeHold.hidden = YES;
-    else
-        placeHold.hidden = NO;
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    inputPlaceHolder.hidden = (self.textInputView.text.length > 0);
 }
 
-- (void)textViewDidChange:(UITextView *)textView
-{
-    [self changeSendBtnWithPhoto:textView.text.length>0?NO:YES];
-    placeHold.hidden = textView.text.length>0;
+- (void)textViewDidChange:(UITextView *)textView{
+    BOOL isNoInput = (textView.text.length > 0);
+    [self changeSendBtnWithPhoto:!isNoInput];
+    inputPlaceHolder.hidden = isNoInput;
 }
 
 - (void)changeSendBtnWithPhoto:(BOOL)isPhoto
@@ -211,16 +207,12 @@
     [self.btnSendMessage setBackgroundImage:image forState:UIControlStateNormal];
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if (self.textInputView.text.length>0)
-        placeHold.hidden = YES;
-    else
-        placeHold.hidden = NO;
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    inputPlaceHolder.hidden = (self.textInputView.text.length > 0);
 }
 
 -(void)dealloc{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

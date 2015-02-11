@@ -149,9 +149,11 @@
 #pragma mark - JSChatInputViewDelegate
 
 - (void)inputView:(JSChatInputView *)inputView afterSendTextBtnTapWithText:(NSString *)text{
-    NSDictionary *dic = @{@"strContent": text, @"type":@(UUMessageTypeText)};
     inputView.textInputView.text = @"";
     [inputView changeSendBtnWithPhoto:YES];
+    
+    // TODO: move this to JSChatViewUIResponder.inputView:sendTextBtnDidTapWithText:
+    NSDictionary *dic = @{@"strContent": text, @"type":@(UUMessageTypeText)};
     [self dealTheFunctionData:dic];
 }
 

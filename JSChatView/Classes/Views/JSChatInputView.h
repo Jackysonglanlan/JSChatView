@@ -36,8 +36,6 @@
 
 @property (nonatomic, assign) BOOL isAbleToSendTextMessage;
 
-@property (nonatomic, strong) UIViewController *superVC;
-
 @property (nonatomic, weak) id<JSChatInputViewDelegate> delegate;
 
 @property (nonatomic, weak) id<JSChatViewUIResponder> uiResponder;
