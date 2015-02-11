@@ -10,6 +10,8 @@
 
 #import "JSChatViewUIResponder.h"
 
+#import "JSChatViewUIRender.h"
+
 @class JSChatInputView;
 
 @protocol JSChatInputViewDelegate <NSObject>
@@ -39,6 +41,8 @@
 @property (nonatomic, weak) id<JSChatInputViewDelegate> delegate;
 
 @property (nonatomic, weak) id<JSChatViewUIResponder> uiResponder;
+
+@property (nonatomic, weak) id<JSChatViewUIRender> uiRender;
 
 - (void)changeSendBtnWithPhoto:(BOOL)isPhoto;
 

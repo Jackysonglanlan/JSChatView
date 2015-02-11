@@ -57,9 +57,10 @@
 
 - (void)buildChatTableView {
     CGRect inputViewFrm = CGRectMake(0, Main_Screen_Height-40, Main_Screen_Width, 40);
-    JSChatInputView *inputView = [[JSChatInputView alloc] initWithFrame:inputViewFrm];
+    JSChatInputView *inputView = [[[JSChatInputView alloc] initWithFrame:inputViewFrm] autorelease];
     inputView.delegate = self;
     inputView.uiResponder = manager.uiResponder;
+    inputView.uiRender = manager.uiRender;
     inputView.tag = kTag_InputView;
     [self.view addSubview:inputView];
     

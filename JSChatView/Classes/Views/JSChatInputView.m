@@ -88,6 +88,10 @@
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDidShowOrHide:) name:UIKeyboardWillChangeFrameNotification object:nil];
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textViewDidEndEditing:) name:UIKeyboardWillHideNotification object:nil];
+        
+        if ([self.uiRender respondsToSelector:@selector(inputViewDidInit:)]) {
+            [self.uiRender inputViewDidInit:self];
+        }
     }
     return self;
 }

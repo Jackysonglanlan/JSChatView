@@ -10,6 +10,8 @@
 
 #import "JSChatCell.h"
 
+@class JSChatInputView;
+
 @protocol JSChatViewUIRender <NSObject>
 
 -(UIImageView*)createHeadImageViewInCell:(JSChatCell*)cell headBgView:(UIView*)bgView;
@@ -21,5 +23,9 @@
 
 -(UIView*)createSendTimeViewInCell:(JSChatCell*)cell;
 -(void)renderSendTimeView:(UIView*)nameView inCell:(JSChatCell*)cell;
+
+@optional
+
+-(void)inputViewDidInit:(JSChatInputView*)inputView;
 
 @end
