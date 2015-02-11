@@ -8,7 +8,6 @@
 
 #import "JSChatInputView.h"
 
-#import "UUProgressHUD.h"
 #import "ACMacros.h"
 
 @interface JSChatInputView ()<UIActionSheetDelegate,UITextViewDelegate>{

@@ -46,7 +46,6 @@
 		4C4BD31A1A864C8F00FB89CB /* JSChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2E71A864C8F00FB89CB /* JSChatCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C4BD31B1A864C8F00FB89CB /* JSChatBubbleBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2EA1A864C8F00FB89CB /* JSChatBubbleBgView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C4BD31C1A864C8F00FB89CB /* JSChatInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2EC1A864C8F00FB89CB /* JSChatInputView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		4C4BD31D1A864C8F00FB89CB /* UUProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD2EE1A864C8F00FB89CB /* UUProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4C4BD3221A864DB300FB89CB /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BD3211A864DB300FB89CB /* ChatModel.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8427A3381A89B75B009DE381 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3141A89B75B009DE381 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		8427A3391A89B75B009DE381 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3161A89B75B009DE381 /* AFHTTPRequestOperationManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -70,6 +69,7 @@
 		8427A35A1A89B93E009DE381 /* JSAudioMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3551A89B93E009DE381 /* JSAudioMessageHandler.m */; };
 		8427A35B1A89B93E009DE381 /* JSImageMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3571A89B93E009DE381 /* JSImageMessageHandler.m */; };
 		8427A35C1A89B93E009DE381 /* JSTextMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3591A89B93E009DE381 /* JSTextMessageHandler.m */; };
+		8427A3621A8B0960009DE381 /* UUProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427A3611A8B0960009DE381 /* UUProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,8 +139,6 @@
 		4C4BD2EA1A864C8F00FB89CB /* JSChatBubbleBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSChatBubbleBgView.m; sourceTree = "<group>"; };
 		4C4BD2EB1A864C8F00FB89CB /* JSChatInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSChatInputView.h; sourceTree = "<group>"; };
 		4C4BD2EC1A864C8F00FB89CB /* JSChatInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSChatInputView.m; sourceTree = "<group>"; };
-		4C4BD2ED1A864C8F00FB89CB /* UUProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUProgressHUD.h; sourceTree = "<group>"; };
-		4C4BD2EE1A864C8F00FB89CB /* UUProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUProgressHUD.m; sourceTree = "<group>"; };
 		4C4BD31F1A864D5B00FB89CB /* JSShortHand.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSShortHand.h; sourceTree = "<group>"; };
 		4C4BD3201A864DB300FB89CB /* ChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModel.h; sourceTree = "<group>"; };
 		4C4BD3211A864DB300FB89CB /* ChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModel.m; sourceTree = "<group>"; };
@@ -190,6 +188,8 @@
 		8427A3571A89B93E009DE381 /* JSImageMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSImageMessageHandler.m; sourceTree = "<group>"; };
 		8427A3581A89B93E009DE381 /* JSTextMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTextMessageHandler.h; sourceTree = "<group>"; };
 		8427A3591A89B93E009DE381 /* JSTextMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTextMessageHandler.m; sourceTree = "<group>"; };
+		8427A3601A8B0960009DE381 /* UUProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUProgressHUD.h; sourceTree = "<group>"; };
+		8427A3611A8B0960009DE381 /* UUProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,8 +382,6 @@
 				4C4BD2EA1A864C8F00FB89CB /* JSChatBubbleBgView.m */,
 				4C4BD2EB1A864C8F00FB89CB /* JSChatInputView.h */,
 				4C4BD2EC1A864C8F00FB89CB /* JSChatInputView.m */,
-				4C4BD2ED1A864C8F00FB89CB /* UUProgressHUD.h */,
-				4C4BD2EE1A864C8F00FB89CB /* UUProgressHUD.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -399,6 +397,8 @@
 		8427A3111A89B752009DE381 /* TestResources */ = {
 			isa = PBXGroup;
 			children = (
+				8427A3601A8B0960009DE381 /* UUProgressHUD.h */,
+				8427A3611A8B0960009DE381 /* UUProgressHUD.m */,
 				8427A3491A89B767009DE381 /* ImagePicker */,
 				8427A3121A89B75B009DE381 /* AFNetworking */,
 				8427A3531A89B93E009DE381 /* ContentHandlers */,
@@ -595,7 +595,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C4BD31D1A864C8F00FB89CB /* UUProgressHUD.m in Sources */,
 				8427A3521A89B8B5009DE381 /* JSViewController.m in Sources */,
 				4C4BD3001A864C8F00FB89CB /* NSDate+Utils.m in Sources */,
 				4C4BD31B1A864C8F00FB89CB /* JSChatBubbleBgView.m in Sources */,
@@ -622,6 +621,7 @@
 				8427A3471A89B75B009DE381 /* UIRefreshControl+AFNetworking.m in Sources */,
 				8427A3401A89B75B009DE381 /* AFURLSessionManager.m in Sources */,
 				8427A33B1A89B75B009DE381 /* AFNetworkReachabilityManager.m in Sources */,
+				8427A3621A8B0960009DE381 /* UUProgressHUD.m in Sources */,
 				8427A33F1A89B75B009DE381 /* AFURLResponseSerialization.m in Sources */,
 				8427A33E1A89B75B009DE381 /* AFURLRequestSerialization.m in Sources */,
 				4C4BD31C1A864C8F00FB89CB /* JSChatInputView.m in Sources */,
