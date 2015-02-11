@@ -54,7 +54,7 @@
 }
 
 + (NSDate *)dateWithHour:(int)hour
-              minute:(int)minute
+                  minute:(int)minute
 {
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -148,7 +148,7 @@
 #pragma mark - Time string
 - (NSString *)timeHourMinute
 {
-
+    
     return [self timeHourMinuteWithPrefix:NO suffix:NO];
 }
 
